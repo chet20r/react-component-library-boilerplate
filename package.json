@@ -14,14 +14,18 @@
   },
   "scripts": {
     "lint:css": "stylelint './src/**/*.jsx'",
-    "eslint": "eslint ./src/**/*.js ./src/**/*.jsx",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "format": "prettier --write \"./src/**/*.+(js|jsx|json|css|md)\""
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -35,7 +39,12 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@babel/preset-stage-0": "^7.0.0",
+    "@storybook/addon-actions": "^5.2.4",
+    "@storybook/addon-links": "^5.2.4",
+    "@storybook/addons": "^5.2.4",
+    "@storybook/react": "^5.2.4",
     "@svgr/rollup": "^4.3.3",
+    "babel-loader": "^8.0.6",
     "cross-env": "^6.0.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
@@ -50,7 +59,9 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.1.1",
+    "husky": "^3.0.9",
     "jest-styled-components": "^6.3.3",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -72,5 +83,11 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn format"
+    }
+  }
 }
