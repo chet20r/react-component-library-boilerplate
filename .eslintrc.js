@@ -14,6 +14,9 @@ module.exports = {
     'space-before-function-paren': 0,
 
     // allow specifying true explicitly for boolean props
-    'react/jsx-boolean-value': 0
+    'react/jsx-boolean-value': 0,
+
+    // don't force exteraneous dependencies check
+    'import/no-extraneous-dependencies': 0
   }
 };
